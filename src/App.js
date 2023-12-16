@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import React from "react";
+import ConversationList from './ConversationList';
+import ConversationDetails from "./ConversationDetails";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [selectedConversation, setSelectedConversation] = useState(null)
+
+    return (
+        <div style={{ display: 'flex' }}>
+            <ConversationList onSelect={setSelectedConversation} />
+            {selectedConversation && <ConversationDetails conversation={selectedConversation} />}
+        </div>
+    )
 }
 
 export default App;
